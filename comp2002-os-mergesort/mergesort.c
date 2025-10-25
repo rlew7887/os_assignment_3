@@ -48,15 +48,12 @@ void merge(int leftstart, int leftend, int rightstart, int rightend){
 }
 
 /* this function will be called by parallel_mergesort() as its base case. */
-void my_mergesort(int left, int right){
-
+void mergesort(int left, int right){
 	if (left >= right) return;	/*if array has 1 or 0 elements, its already sorted*/
-
-		int mid = (left + right) / 2; /*find midpoint*/
-		my_mergesort(left, mid);
-		my_mergesort(mid + 1, right);
-		merge(left, mid, mid + 1, right); /*merge two sorted halves*/
-
+	int mid = (left + right) / 2; /*find midpoint*/
+	mergesort(left, mid);
+	mergesort(mid + 1, right);
+	merge(left, mid, mid + 1, right); /*merge two sorted halves*/
 }
 
 
