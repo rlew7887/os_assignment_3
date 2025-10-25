@@ -10,7 +10,7 @@
 /* this function will be called by mergesort() and also by parallel_mergesort(). */
 void merge(int leftstart, int leftend, int rightstart, int rightend){
 	int leftsize = leftend - leftstart + 1;
-	int rightsize = rightend - rightstart;
+	int rightsize = rightend - rightstart + 1;
 
 	for (int i=0; i<leftsize; i++) 
 		B[i] = A[leftstart + i]; /*left subarray*/
