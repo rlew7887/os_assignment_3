@@ -59,11 +59,20 @@ void mergesort(int left, int right){
 
 /* this function will be called by the testing program. */
 void * parallel_mergesort(void *arg){
-		return NULL;
+	pthread_t p1, p2;	
+	
+
+
+	
 }
 
 /* we build the argument for the parallel_mergesort function. */
 struct argument * buildArgs(int left, int right, int level){
-		return NULL;
+	argument* arg = (argument*)malloc(sizeof(argument));
+	arg->left = left;
+	arg->right = right;
+	arg->level = level;
+	return arg;
 }
+
 
