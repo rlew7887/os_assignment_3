@@ -11,15 +11,17 @@
 void merge(int leftstart, int leftend, int rightstart, int rightend){
 	int leftsize = leftend - leftstart + 1;
 	int rightsize = rightend - rightstart + 1;
-
-	for (int i=0; i<leftsize; i++) 
-		B[i] = A[leftstart + i]; /*left subarray*/
-	for (int j=0; j<rightsize; j++)
-		B[leftsize + j] = A[rightstart + j]; /*right subarray*/
-
-	/*merge temp array B back into original array A*/
 	int i = 0;
 	int j = 0;
+	for (i=0; i<leftsize; i++) {
+		B[i] = A[leftstart + i]; /*left subarray*/
+	}
+	for (j=0; j<rightsize; j++) {
+		B[leftsize + j] = A[rightstart + j]; /*right subarray*/
+	}
+	/*merge temp array B back into original array A*/
+	i = 0;
+	j = 0;
 	int k = leftstart;
 	while (i<leftsize && j<rightsize) {
 		if (B[i] <= B[leftsize + j]) {
@@ -59,16 +61,26 @@ void mergesort(int left, int right){
 
 /* this function will be called by the testing program. */
 void * parallel_mergesort(void *arg){
+	struct argument* a = (struct argument*)arg;
 	pthread_t p1, p2;	
-	
-
-
+	if(a->left >= a->right || a->level >= cutoff) {
+		mergesort(a->left, a->right);
+		return NULL;
+	}
+	int mid = (a->left + a->right) / 2;
+	struct argument* arg1 = buildArgs(a->left, mid, a->level + 1); // build arguments for calling parallel_mergesort
+	struct argument* arg2 = buildArgs(mid+1, a->right, a->level + 1);
+	pthread_create(&p1, NULL, parallel_mergesort, arg1); // creates threads that run parallel_mergesort again
+	pthread_create(&p2, NULL, parallel_mergesort, arg2);
+	pthread_join(p1, NULL); // threads wait until the base case
+	pthread_join(p2, NULL);
+	merge(a->left, mid, mid + 1, a->right); // merge halves up the stack
 	
 }
 
 /* we build the argument for the parallel_mergesort function. */
 struct argument * buildArgs(int left, int right, int level){
-	argument* arg = (argument*)malloc(sizeof(argument));
+	struct argument* arg = (struct argument*)malloc(sizeof(struct argument));
 	arg->left = left;
 	arg->right = right;
 	arg->level = level;
