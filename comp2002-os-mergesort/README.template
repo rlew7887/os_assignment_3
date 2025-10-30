@@ -7,15 +7,18 @@ README.template
 
 ## Overview
 
-Concisely explain what the program does. If this exceeds a couple of
-sentences, you're going too far. Generally, you should be pulling this
-right from the project specification. We don't want you to just cut and
-paste, but paraphrase what is stated in the project specification.
+Using the pthread library, a multi-threaded version of the merge-sort algorithm will be implemented.
+This code will be used to generate a randomly generated array.
 
 ## Manifest
 
 A listing of source files and other non-generated files, and a brief
 (one-line) explanation of the purpose of each file.
+
+mergesort.c         //contains the code implementation
+mergesort.h         //declarations
+test-mergesort.c    //tester file
+
 
 ## Building the project
 
@@ -24,16 +27,26 @@ delivering a library, where does it need to be installed, or how do you use
 it? Is this an executable, if so, how can a user get up to speed as fast as
 possible?
 
+
 ## Features and usage
 
 Summarise the main features of your program. It is also appropriate to
 instruct the user how to use your program.
+
+Compile using 'make', then run the test file: ./test-mergesort.
+The program takes 3 parameters: <input size> <cutoff level> <seed>
+
+- features of program
+
+
 
 ## Testing
 
 This section should detail how you tested your code. Simply stating "I ran
 it a few times and it seems to work" is not sufficient. Your testing needs
 to be detailed here.
+
+
 
 ## Known Bugs
 
@@ -50,6 +63,12 @@ finally "clicked" for you in the process of working on this project? How well
 did the development and testing process go for you?
 
 ## Sources Used
+
+Arpaci-Dusseau, R.H. and Arpaci-Dusseau, A.C. (2018). OPERATING SYSTEMS : three easy pieces. [online] S.L.: Createspace. Available at: https://pages.cs.wisc.edu/~remzi/OSTEP/.
+‌
+GeeksforGeeks (2013). Merge Sort Data Structure and Algorithms Tutorials. [online] GeeksforGeeks. Available at: https://www.geeksforgeeks.org/dsa/merge-sort/.
+‌
+
 
 If you used any sources outside of the textbook, you should list them here. 
 If you looked something up on stackoverflow.com or you use help from AI, and 
