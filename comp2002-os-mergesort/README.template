@@ -8,7 +8,7 @@ README.template
 ## Overview
 
 Using the pthread library, a multi-threaded version of the merge-sort algorithm will be implemented.
-This code will be used to generate a randomly generated array.
+This code will be used to concurrently sort a randomly generated array.
 
 ## Manifest
 
@@ -69,6 +69,9 @@ Arpaci-Dusseau, R.H. and Arpaci-Dusseau, A.C. (2018). OPERATING SYSTEMS : three 
 ‌
 GeeksforGeeks (2013). Merge Sort Data Structure and Algorithms Tutorials. [online] GeeksforGeeks. Available at: https://www.geeksforgeeks.org/dsa/merge-sort/.
 ‌
+I acknowledge the use of ChatGPT [https://chat.openai.com/] to learn more about the implementation of mergesort. The following prompts were entered into ChatGPT on 26 July 2025:
+- How is merge affected if an array is not taken as a parameter?
+- Why use a global or local temp array?
 
 
 If you used any sources outside of the textbook, you should list them here. 
