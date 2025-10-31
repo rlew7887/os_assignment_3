@@ -1,6 +1,6 @@
 README.template
 
-## Project Number/Title 
+## Assignment 3 Concurrency 
 
 * Authors: Rachel Chien Wei Lew, Cooper Melville, Humaira Arief Azali
 * Group name: Assignment 3 Groups 170
@@ -18,7 +18,7 @@ A listing of source files and other non-generated files, and a brief
 mergesort.c         //contains the code implementation
 mergesort.h         //declarations
 test-mergesort.c    //tester file
-
+Makefile            //build automation file
 
 ## Building the project
 
@@ -27,17 +27,18 @@ delivering a library, where does it need to be installed, or how do you use
 it? Is this an executable, if so, how can a user get up to speed as fast as
 possible?
 
+Compile using 'make', then run the test file: ./test-mergesort <input size> <cutoff level> <seed>
 
 ## Features and usage
 
 Summarise the main features of your program. It is also appropriate to
 instruct the user how to use your program.
 
-Compile using 'make', then run the test file: ./test-mergesort.
-The program takes 3 parameters: <input size> <cutoff level> <seed>
-
 - features of program
-
+merge
+mergesort
+parallelmergesort
+buildArgs
 
 
 ## Testing
