@@ -22,23 +22,24 @@ Makefile            //build automation file
 
 ## Building the project
 
-This section should tell the user how to build your code.  If you are
-delivering a library, where does it need to be installed, or how do you use
-it? Is this an executable, if so, how can a user get up to speed as fast as
-possible?
-
-Compile using 'make', then run the test file: ./test-mergesort <input size> <cutoff level> <seed>
+To compile using the Makefile, open a terminal and run 'make'
 
 ## Features and usage
 
 Summarise the main features of your program. It is also appropriate to
 instruct the user how to use your program.
 
-- features of program
-merge
-mergesort
-parallelmergesort
-buildArgs
+# Features
+- merge: This function combines two already sorted subarrays
+- my_mergesort: This function splits an array into left and right subarrays and recursively sorts them, before merging
+- parallel_mergesort: This function implements the multi-threaded version of mergesort, so it allows subarrays to be sorted concurrently instead of sequentially
+- buildArgs: This is a helper function that builds arguments to be used by parallel_mergesort
+
+# Using the program
+- After building the project, run the executable test file: ./test-mergesort <input size> <cutoff level> <seed>
+- input size: the size of the array
+- cutoff level: the number of levels
+- seed: initial value used to generate random numbers
 
 
 ## Testing
