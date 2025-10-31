@@ -11,8 +11,18 @@
 void merge(int leftstart, int leftend, int rightstart, int rightend){
 	int leftsize = leftend - leftstart + 1;
 	int rightsize = rightend - rightstart + 1;
+	int total_size = leftsize + rightsize;
+
+	int *B = (int*)malloc(total_size * sizeof(int)); /*allocates local temp array- each thread gets its own*/
+    if (B == NULL) {
+        fprintf(stderr, "memory allocation failed in merge\n"); /*error checking*/
+        exit(EXIT_FAILURE);
+    }
+
 	int i = 0;
 	int j = 0;
+
+
 	for (i=0; i<leftsize; i++) {
 		B[i] = A[leftstart + i]; /*left subarray*/
 	}
@@ -47,14 +57,17 @@ void merge(int leftstart, int leftend, int rightstart, int rightend){
 		j++;
 		k++;
 	}
+
+	free(B); /*frees local temp array*/
+
 }
 
 /* this function will be called by parallel_mergesort() as its base case. */
-void mergesort(int left, int right){
+void my_mergesort(int left, int right){
 	if (left >= right) return;	/*if array has 1 or 0 elements, its already sorted*/
 	int mid = (left + right) / 2; /*find midpoint*/
-	mergesort(left, mid);
-	mergesort(mid + 1, right);
+	my_mergesort(left, mid);
+	my_mergesort(mid + 1, right);
 	merge(left, mid, mid + 1, right); /*merge two sorted halves*/
 }
 
@@ -64,7 +77,7 @@ void * parallel_mergesort(void *arg){
 	struct argument* a = (struct argument*)arg;
 	pthread_t p1, p2;	
 	if(a->left >= a->right || a->level >= cutoff) {
-		mergesort(a->left, a->right);
+		my_mergesort(a->left, a->right);
 		return NULL;
 	}
 	int mid = (a->left + a->right) / 2;
