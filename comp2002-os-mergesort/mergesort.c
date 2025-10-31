@@ -19,9 +19,6 @@ void merge(int leftstart, int leftend, int rightstart, int rightend){
         exit(EXIT_FAILURE);
     }
 
-	int i = 0;
-	int j = 0;
-
 
 	for (i=0; i<leftsize; i++) {
 		B[i] = A[leftstart + i]; /*left subarray*/
