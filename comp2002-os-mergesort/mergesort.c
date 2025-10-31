@@ -18,10 +18,6 @@ void merge(int leftstart, int leftend, int rightstart, int rightend){
         fprintf(stderr, "memory allocation failed in merge\n"); /*error checking*/
         exit(EXIT_FAILURE);
     }
-	
-	int i = 0;
-	int j = 0;
-
 	for (i=0; i<leftsize; i++) {
 		B[i] = A[leftstart + i]; /*left subarray*/
 	}
@@ -29,9 +25,8 @@ void merge(int leftstart, int leftend, int rightstart, int rightend){
 		B[leftsize + j] = A[rightstart + j]; /*right subarray*/
 	}
 	/*merge temp array B back into original array A*/
-	i = 0;
-	j = 0;
-	
+	int i = 0;
+	int j = 0;
 	int k = leftstart;
 	while (i<leftsize && j<rightsize) {
 		if (B[i] <= B[leftsize + j]) {
