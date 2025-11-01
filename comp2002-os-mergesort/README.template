@@ -12,9 +12,6 @@ This code will be used to concurrently sort a randomly generated array.
 
 ## Manifest
 
-A listing of source files and other non-generated files, and a brief
-(one-line) explanation of the purpose of each file.
-
 mergesort.c         //contains the code implementation
 mergesort.h         //declarations
 test-mergesort.c    //tester file
@@ -154,6 +151,13 @@ What kinds of errors did you get? How did you fix them?
 What parts of the project did you find challenging? Is there anything that
 finally "clicked" for you in the process of working on this project? How well
 did the development and testing process go for you?
+
+There was a race condition in merge caused by using a global temp array. This is because multiple threads try to write to the same B array at the same time. 
+This was fixed by using malloc to assign a local temp array for merging. Each thread now has its own private temp array so there are no shared writes, which prevents race conditions.
+
+This works because malloc allows for dynamic resizing, which is needed when the size of the temp array is decided at runtime.
+Moreover, it can be used to allocate large amounts of memory that might exceed the size limit of the stack and since malloc is heap-allocated,
+it can persist beyond the scope of the function in which it was declared. This ensures that recursive calls to merge() won't cause segmentation faults.
 
 ## Sources Used
 
