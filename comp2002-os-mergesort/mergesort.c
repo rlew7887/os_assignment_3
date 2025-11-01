@@ -13,20 +13,23 @@ void merge(int leftstart, int leftend, int rightstart, int rightend){
 	int rightsize = rightend - rightstart + 1;
 	int total_size = leftsize + rightsize;
 
-	int *B = (int*)malloc(total_size * sizeof(int)); /*allocates local temp array- each thread gets its own*/
+	int *B = (int*)malloc(total_size * sizeof(int)); //allocates local temp array- each thread gets its own
     if (B == NULL) {
-        fprintf(stderr, "memory allocation failed in merge\n"); /*error checking*/
+        fprintf(stderr, "memory allocation failed in merge\n"); //error checking
         exit(EXIT_FAILURE);
     }
+
+	int i, j;
 	for (i=0; i<leftsize; i++) {
-		B[i] = A[leftstart + i]; /*left subarray*/
+		B[i] = A[leftstart + i]; //left subarray
 	}
 	for (j=0; j<rightsize; j++) {
-		B[leftsize + j] = A[rightstart + j]; /*right subarray*/
+		B[leftsize + j] = A[rightstart + j]; //right subarray
 	}
-	/*merge temp array B back into original array A*/
-	int i = 0;
-	int j = 0;
+
+	// merge temp array B back into original array A
+	i = 0;
+	j = 0;
 	int k = leftstart;
 	while (i<leftsize && j<rightsize) {
 		if (B[i] <= B[leftsize + j]) {
@@ -39,31 +42,30 @@ void merge(int leftstart, int leftend, int rightstart, int rightend){
 		k++;
 	}
 
-	/*copy remaining elements of left subarray, if any*/
+	// copy remaining elements of left subarray, if any
 	while (i < leftsize) {
 		A[k] = B[i];
 		i++;
 		k++;
 	}
 
-	/*copy remaining elements of right subarray, if any*/
+	// copy remaining elements of right subarray, if any
 	while (j < rightsize) {
 		A[k] = B[leftsize + j];
 		j++;
 		k++;
 	}
 
-	free(B); /*frees local temp array*/
-
+	free(B); //frees local temp array
 }
 
 /* this function will be called by parallel_mergesort() as its base case. */
 void my_mergesort(int left, int right){
-	if (left >= right) return;	/*if array has 1 or 0 elements, its already sorted*/
-	int mid = (left + right) / 2; /*find midpoint*/
+	if (left >= right) return;	// if array has 1 or 0 elements, its already sorted
+	int mid = (left + right) / 2; // find midpoint
 	my_mergesort(left, mid);
 	my_mergesort(mid + 1, right);
-	merge(left, mid, mid + 1, right); /*merge two sorted halves*/
+	merge(left, mid, mid + 1, right); // merge two sorted halves
 }
 
 
