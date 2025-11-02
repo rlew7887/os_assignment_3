@@ -144,14 +144,6 @@ even though the time to output was much shorter than 29 seconds.
 
 ## Reflection and Self Assessment
 
-Discuss the issues you encountered during development and testing. What
-problems did you have? What did you have to research and learn on your own?
-What kinds of errors did you get? How did you fix them?
-
-What parts of the project did you find challenging? Is there anything that
-finally "clicked" for you in the process of working on this project? How well
-did the development and testing process go for you?
-
 There was a race condition in merge caused by using a global temp array. This is because multiple threads try to write to the same B array at the same time. 
 This was fixed by using malloc to assign a local temp array for merging. Each thread now has its own private temp array so there are no shared writes, which eliminates race conditions.
 
